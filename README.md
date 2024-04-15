@@ -37,6 +37,8 @@ PROXY_URLS="socks5h://username:auth_key@proxy.packetstream.io:31113,https://user
 ## Contributing
 Contributions to this repository are welcome. If you have an example or improvement you'd like to share, feel free to open a pull request.
 
+Feel free to include your [referral link](https://packetstream.io/dashboard/referrals) in your pull request if you would like to be credited for your contribution.
+
 ## License
 This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
