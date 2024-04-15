@@ -11,7 +11,7 @@ async function main() {
     process.exit(1);
   }
 
-  const endpoint = "http://ipv4.icanhazip.com";
+  const endpoint = "https://ipv4.icanhazip.com";
 
   for (const proxyURL of proxyURLs.split(',')) {
     console.log(`Using proxy: ${proxyURL}`);

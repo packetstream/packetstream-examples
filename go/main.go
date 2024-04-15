@@ -22,7 +22,7 @@ func main() {
 		log.Fatal("PROXY_URLS should be a comma separated list of proxy URLs")
 	}
 
-	endpoint := "http://ipv4.icanhazip.com"
+	endpoint := "https://ipv4.icanhazip.com"
 
 	for _, proxyURL := range strings.Split(proxyURLs, ",") {
 		log.Printf("Using proxy: %s", proxyURL)

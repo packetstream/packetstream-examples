@@ -8,7 +8,7 @@ if [ -z "$PROXY_URLS" ]; then
 fi
 
 # Define the endpoint
-endpoint="http://ipv4.icanhazip.com"
+endpoint="https://ipv4.icanhazip.com"
 
 # Loop through each proxy URL
 IFS=',' read -ra proxies <<< "$PROXY_URLS"

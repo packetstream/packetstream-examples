@@ -30,7 +30,7 @@ def main():
     if not proxy_urls:
         sys.exit("PROXY_URLS should be a comma-separated list of proxy URLs")
 
-    endpoint = "http://ipv4.icanhazip.com"
+    endpoint = "https://ipv4.icanhazip.com"
 
     for proxy_url in proxy_urls.split(','):
         print(f"Using proxy: {proxy_url}")
