@@ -26,9 +26,9 @@ def proxied_request(proxy_url, endpoint):
         return f"Error: {str(e)}"
 
 def main():
-    proxy_urls = os.getenv("PROXY_URLS")
+    proxy_urls = os.getenv("PACKETSTREAM_PROXY_URLS")
     if not proxy_urls:
-        sys.exit("PROXY_URLS should be a comma-separated list of proxy URLs")
+        sys.exit("PACKETSTREAM_PROXY_URLS should be a comma-separated list of proxy URLs")
 
     endpoint = "https://ipv4.icanhazip.com"
 

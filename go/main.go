@@ -17,9 +17,9 @@ import (
 const tunnelTimeout = 10 * time.Second
 
 func main() {
-	proxyURLs := os.Getenv("PROXY_URLS")
+	proxyURLs := os.Getenv("PACKETSTREAM_PROXY_URLS")
 	if proxyURLs == "" {
-		log.Fatal("PROXY_URLS should be a comma separated list of proxy URLs")
+		log.Fatal("PACKETSTREAM_PROXY_URLS should be a comma separated list of proxy URLs")
 	}
 
 	endpoint := "https://ipv4.icanhazip.com"

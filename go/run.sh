@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-# Ensure PROXY_URLS is set
-if [ -z "$PROXY_URLS" ]; then
-    echo "PROXY_URLS should be a comma separated list of proxy URLs"
+# Ensure PACKETSTREAM_PROXY_URLS is set
+if [ -z "$PACKETSTREAM_PROXY_URLS" ]; then
+    echo "PACKETSTREAM_PROXY_URLS should be a comma separated list of proxy URLs"
     exit 1
 fi
 
@@ -11,4 +11,4 @@ fi
 docker build -t packetstream-example-go .
 
 # Run Docker container with the necessary environment variable
-docker run --rm -e PROXY_URLS="$PROXY_URLS" packetstream-example-go
+docker run --rm -e PACKETSTREAM_PROXY_URLS="$PACKETSTREAM_PROXY_URLS" packetstream-example-go

@@ -5,9 +5,9 @@ import { SocksProxyAgent } from 'socks-proxy-agent';
 const tunnelTimeout = 10000; // 10 seconds
 
 async function main() {
-  const proxyURLs = process.env.PROXY_URLS;
+  const proxyURLs = process.env.PACKETSTREAM_PROXY_URLS;
   if (!proxyURLs) {
-    console.error("PROXY_URLS should be a comma-separated list of proxy URLs");
+    console.error("PACKETSTREAM_PROXY_URLS should be a comma-separated list of proxy URLs");
     process.exit(1);
   }
 

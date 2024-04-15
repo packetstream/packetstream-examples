@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Ensure PROXY_URLS is set
-if [ -z "$PROXY_URLS" ]; then
-  echo "PROXY_URLS should be a comma separated list of proxy URLs"
+# Ensure PACKETSTREAM_PROXY_URLS is set
+if [ -z "$PACKETSTREAM_PROXY_URLS" ]; then
+  echo "PACKETSTREAM_PROXY_URLS should be a comma separated list of proxy URLs"
   exit 1
 fi
 

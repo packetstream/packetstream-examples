@@ -25,14 +25,14 @@ cd packetstream-examples
 cd go
 
 # Run the example with Docker
-PROXY_URLS="socks5h://username:auth_key@proxy.packetstream.io:31113,https://username:auth_key@proxy.packetstream.io:31111" ./run.sh
+PACKETSTREAM_PROXY_URLS="socks5h://username:auth_key@proxy.packetstream.io:31113,https://username:auth_key@proxy.packetstream.io:31111" ./run.sh
 
 # Or run the example natively
-PROXY_URLS="socks5h://username:auth_key@proxy.packetstream.io:31113,https://username:auth_key@proxy.packetstream.io:31111" go run main.go
+PACKETSTREAM_PROXY_URLS="socks5h://username:auth_key@proxy.packetstream.io:31113,https://username:auth_key@proxy.packetstream.io:31111" go run main.go
 ```
 
 ## Environment Variables
-- `PROXY_URLS`: A comma-separated list of URLs of PacketStream proxies you want to use. Replace `username` and `auth_key` with your PacketStream username and auth key respectively.
+- `PACKETSTREAM_PROXY_URLS`: A comma-separated list of URLs of PacketStream proxies you want to use. Replace `username` and `auth_key` with your PacketStream username and auth key respectively.
 
 ## Contributing
 Contributions to this repository are welcome. If you have an example or improvement you'd like to share, feel free to open a pull request.

@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-# Check if PROXY_URLS environment variable is set
-if [ -z "$PROXY_URLS" ]; then
-  echo "PROXY_URLS should be a comma separated list of proxy URLs"
+# Check if PACKETSTREAM_PROXY_URLS environment variable is set
+if [ -z "$PACKETSTREAM_PROXY_URLS" ]; then
+  echo "PACKETSTREAM_PROXY_URLS should be a comma separated list of proxy URLs"
   exit 1
 fi
 
@@ -11,7 +11,7 @@ fi
 endpoint="https://ipv4.icanhazip.com"
 
 # Loop through each proxy URL
-IFS=',' read -ra proxies <<< "$PROXY_URLS"
+IFS=',' read -ra proxies <<< "$PACKETSTREAM_PROXY_URLS"
 for proxy in "${proxies[@]}"; do
   echo "Using proxy: $proxy"
 
