@@ -1,7 +1,7 @@
 ## Pull Request Description
 Please include a summary of the change.
 
-### Additional Information
+## Additional Information
 Provide the motivation for the change, and any additional context or information that may be helpful for reviewers.
 
 ## Checklist
