@@ -1,29 +1,39 @@
 import os
-import requests
 import sys
-from urllib.parse import urlparse
+from urllib.parse import urlsplit, urlunsplit
+
+import requests
+
+
+def redact(proxy_url):
+    """Return the proxy URL with its auth key replaced so it is never logged."""
+    parts = urlsplit(proxy_url)
+    if parts.password is None:
+        return proxy_url
+    netloc = f"{parts.username}:xxxxx@{parts.hostname}"
+    if parts.port:
+        netloc += f":{parts.port}"
+    return urlunsplit(parts._replace(netloc=netloc))
+
 
 def proxied_request(proxy_url, endpoint):
-    parsed_url = urlparse(proxy_url)
-    proxies = {}
-
-    if parsed_url.scheme.startswith('http') or parsed_url.scheme.startswith('https'):
-        proxies = {'http': proxy_url, 'https': proxy_url}
-    elif parsed_url.scheme.startswith('socks5'):
+    scheme = urlsplit(proxy_url).scheme
+    if scheme in ("http", "https", "socks5h"):
+        proxies = {"http": proxy_url, "https": proxy_url}
+    elif scheme == "socks5":
         # Ensure that DNS queries are made through the SOCKS proxy
-        proxies = {
-            'http': f'socks5h://{parsed_url.netloc}',
-            'https': f'socks5h://{parsed_url.netloc}'
-        }
+        proxy_url = "socks5h" + proxy_url[len("socks5"):]
+        proxies = {"http": proxy_url, "https": proxy_url}
     else:
-        raise ValueError(f"Unsupported proxy scheme: {parsed_url.scheme}")
+        raise ValueError(f"Unsupported proxy scheme: {scheme}")
 
-    try:
-        response = requests.get(endpoint, proxies=proxies, timeout=10)
+    with requests.Session() as session:
+        # Ignore HTTP_PROXY/HTTPS_PROXY so the PacketStream proxy is always used
+        session.trust_env = False
+        response = session.get(endpoint, proxies=proxies, timeout=30)
         response.raise_for_status()
         return response.text.strip()
-    except requests.RequestException as e:
-        return f"Error: {str(e)}"
+
 
 def main():
     proxy_urls = os.getenv("PACKETSTREAM_PROXY_URLS")
@@ -32,11 +42,19 @@ def main():
 
     endpoint = "https://ipv4.icanhazip.com"
 
-    for proxy_url in proxy_urls.split(','):
-        print(f"Using proxy: {proxy_url}")
-        result = proxied_request(proxy_url, endpoint)
+    for proxy_url in proxy_urls.split(","):
+        print(f"Using proxy: {redact(proxy_url)}")
+        try:
+            result = proxied_request(proxy_url, endpoint)
+        except (requests.RequestException, ValueError) as e:
+            message = str(e)
+            password = urlsplit(proxy_url).password
+            if password:
+                # Some error messages repeat the proxy URL
+                message = message.replace(password, "xxxxx")
+            sys.exit(f"Request through {redact(proxy_url)} failed: {message}")
         print(f"Your IP is: {result}")
+
 
 if __name__ == "__main__":
     main()
-

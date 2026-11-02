@@ -3,7 +3,7 @@ This repository provides a collection of code examples for programmatically acce
 
 
 ## Getting Started
-To get started, you'll need to sign up for a PacketStream account and obtain an API key. You can sign up for an account at [packetstream.io](https://packetstream.io/). Once you have an account, you can find your API key in the [PacketStream dashboard](https://packetstream.io/dashboard/network_access).
+To get started, you'll need to sign up for a PacketStream account and obtain an API key. You can sign up for an account at [packetstream.io](https://packetstream.io/). Once you have an account, you can find your API key in the [PacketStream dashboard](https://app.packetstream.io/dashboard/network_access).
 
 ## Examples
 - [Bash (curl)](bash)
@@ -38,15 +38,17 @@ PACKETSTREAM_PROXY_URLS="socks5h://username:auth_key@proxy.packetstream.io:31113
 Contributions to this repository are welcome. If you have an example or improvement you'd like to share, feel free to open a pull request.
 
 > [!CAUTION]
+> The examples never print your auth key. Keep it that way in new examples: redact proxy URLs before logging them, and pass credentials to Docker by variable name (`docker run -e PACKETSTREAM_PROXY_URLS`) rather than on the command line.
+>
 > Please be careful not to expose hard-coded PacketStream credentials in your contributions. This is a public repository, and your credentials could be exposed to the public if you include them in your code.
 
-Feel free to include your [referral link](https://packetstream.io/dashboard/referrals) in your pull request if you would like to be credited for your contribution.
+Feel free to include your [referral link](https://app.packetstream.io/dashboard/referrals) in your pull request if you would like to be credited for your contribution.
 
 ## License
 This repository is licensed under the MIT License. Public contributions to this repository are subject to the same license. See the [LICENSE](LICENSE) file for more information.
 
 ## Support
-If you encounter any issues or have questions about using PacketStream proxies, please contact [PacketStream support](https://packetstream.io/support/contact).
+If you encounter any issues or have questions about using PacketStream proxies, please contact [PacketStream support](https://packetstream.io/contact-us/).
 
 ## About PacketStream
 PacketStream is a residential proxy network that enables businesses to access the web through a pool of residential IPs. With PacketStream, you can gather data, scrape websites, and perform other web-related tasks with requests originating from real residential ISPs all over the world.
