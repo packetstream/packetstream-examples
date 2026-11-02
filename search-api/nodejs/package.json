@@ -1,0 +1,12 @@
+{
+  "name": "packetstream-search-api-nodejs",
+  "private": true,
+  "type": "module",
+  "description": "Run one Google search with the PacketStream Search API",
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "start": "node main.js"
+  }
+}

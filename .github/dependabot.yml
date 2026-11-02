@@ -1,0 +1,35 @@
+version: 2
+
+# Every entry waits 20 days before proposing a new release, so a compromised
+# or broken release has time to be found before it reaches the examples.
+updates:
+  - package-ecosystem: docker
+    directories: ["/proxy/*", "/browsers/*", "/scrapers/*", "/search-api/*", "/fetch-api/*", "/mcp/*", "/tools/testproxy"]
+    schedule: {interval: weekly}
+    cooldown: {default-days: 20}
+    groups:
+      docker: {patterns: ["*"]}
+  - package-ecosystem: npm
+    directories: ["/proxy/nodejs", "/browsers/playwright-nodejs", "/browsers/puppeteer", "/scrapers/crawlee"]
+    schedule: {interval: weekly}
+    cooldown: {default-days: 20}
+    groups:
+      npm: {patterns: ["*"]}
+  - package-ecosystem: pip
+    directories: ["/proxy/python", "/proxy/python-async", "/browsers/playwright-python", "/browsers/selenium-python", "/scrapers/scrapy", "/search-api/python", "/fetch-api/python", "/mcp/python"]
+    schedule: {interval: weekly}
+    cooldown: {default-days: 20}
+    groups:
+      pip: {patterns: ["*"]}
+  - package-ecosystem: gomod
+    directories: ["/proxy/go", "/search-api/go", "/fetch-api/go", "/tools/testproxy"]
+    schedule: {interval: weekly}
+    cooldown: {default-days: 20}
+  - package-ecosystem: cargo
+    directory: /proxy/rust
+    schedule: {interval: weekly}
+    cooldown: {default-days: 20}
+  - package-ecosystem: bundler
+    directory: /proxy/ruby
+    schedule: {interval: weekly}
+    cooldown: {default-days: 20}

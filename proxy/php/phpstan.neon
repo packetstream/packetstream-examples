@@ -1,0 +1,12 @@
+parameters:
+    level: max
+    paths:
+        - main.php
+    ignoreErrors:
+        # libcurl documents an empty CURLOPT_NOPROXY as "use the proxy for every
+        # host", but PHPStan's stub only allows a non-empty string
+        -
+            message: '#^Parameter \#2 \$options of function curl_setopt_array expects#'
+            identifier: argument.type
+            path: main.php
+            count: 1
