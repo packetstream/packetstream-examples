@@ -1,0 +1,43 @@
+# Shared golangci-lint v2 config for every Go module in this repository.
+# Run from a module directory: golangci-lint run --config ../../.golangci.yml
+version: "2"
+
+linters:
+  enable:
+    - bidichk
+    - dupword
+    - errorlint
+    - exhaustive
+    - gocritic
+    - godot
+    - gosec
+    - misspell
+    - nakedret
+    - nilnil
+    - nolintlint
+    - predeclared
+    - usestdlibvars
+    - whitespace
+
+  settings:
+    errcheck:
+      exclude-functions:
+        - (io.Closer).Close
+        - (io.ReadCloser).Close
+        - (net.Conn).Close
+    gosec:
+      excludes:
+        # Examples log values from their own environment after redaction.
+        - G706
+
+  exclusions:
+    rules:
+      # The CI test proxy is meant to listen on every interface of its container.
+      - path: tools/testproxy/
+        linters: [gosec]
+        text: G102
+
+formatters:
+  enable:
+    - gofumpt
+    - goimports

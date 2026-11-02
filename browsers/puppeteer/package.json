@@ -1,0 +1,16 @@
+{
+  "name": "packetstream-browsers-puppeteer",
+  "private": true,
+  "type": "module",
+  "description": "Open ipinfo.io in Chrome through PacketStream with Puppeteer and print the exit IP",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "puppeteer": "25.13.0"
+  }
+}

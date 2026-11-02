@@ -1,56 +1,86 @@
 # PacketStream Examples
-This repository provides a collection of code examples for programmatically accessing the PacketStream residential proxy network. You'll find sample code and Docker configurations to help you integrate PacketStream proxies into your projects.
 
+Runnable examples for [PacketStream](https://packetstream.io/): the residential proxy network, the Search API, the Fetch API, and the MCP server. Each example is a small, self-contained project with its own README, and CI tests every one of them.
 
-## Getting Started
-To get started, you'll need to sign up for a PacketStream account and obtain an API key. You can sign up for an account at [packetstream.io](https://packetstream.io/). Once you have an account, you can find your API key in the [PacketStream dashboard](https://app.packetstream.io/dashboard/network_access).
+## Proxy examples
 
-## Examples
-- [Bash (curl)](bash)
-- [Go](go)
-- [Node.js](nodejs)
-- [Python](python)
+Each one makes two requests to `https://ipinfo.io/json` through PacketStream and prints the exit IP. Set a country or a sticky session to see targeting and sessions work.
 
-## Running the Examples
-Each example is self-contained and can be run independently. To run an example, you'll need to install the required dependencies or use the provided Docker configuration.
+| Example | Library | Proxy protocols |
+| --- | --- | --- |
+| [curl](proxy/curl) | curl | https, http, socks5 |
+| [Python](proxy/python) | Requests | https, http, socks5 |
+| [Python (async)](proxy/python-async) | HTTPX + asyncio | https, http, socks5 |
+| [Node.js](proxy/nodejs) | Undici | https, http, socks5 |
+| [Go](proxy/go) | net/http | https, http, socks5 |
+| [Rust](proxy/rust) | reqwest | https, http, socks5 |
+| [PHP](proxy/php) | cURL extension | https, http, socks5 |
+| [C#](proxy/csharp) | HttpClient (.NET 10) | https, http, socks5 |
+| [Ruby](proxy/ruby) | Net::HTTP | http, socks5 |
+| [Java](proxy/java) | java.net.http.HttpClient | http |
+
+## Browsers and scrapers
+
+| Example | Proxy protocols |
+| --- | --- |
+| [Playwright (Node.js)](browsers/playwright-nodejs) | https, http |
+| [Playwright (Python)](browsers/playwright-python) | https, http |
+| [Puppeteer](browsers/puppeteer) | https, http |
+| [Selenium (Python)](browsers/selenium-python) | https, http |
+| [Crawlee](scrapers/crawlee) | http |
+| [Scrapy](scrapers/scrapy) | http |
+
+Chromium does not support authentication for SOCKS5 proxies, so the browser examples use the HTTPS or HTTP port. Each README explains any protocol a library cannot use.
+
+## Search API, Fetch API and MCP
+
+| Product | Examples |
+| --- | --- |
+| [Search API](https://packetstream.io/docs/search-api/): Google results as JSON | [curl](search-api/curl), [Python](search-api/python), [Node.js](search-api/nodejs), [Go](search-api/go) |
+| [Fetch API](https://packetstream.io/docs/fetch-api/): a web page as Markdown | [curl](fetch-api/curl), [Python](fetch-api/python), [Node.js](fetch-api/nodejs), [Go](fetch-api/go) |
+| [MCP server](https://packetstream.io/docs/mcp/): search and fetch tools for AI agents | [Client setup](mcp), [Python client](mcp/python) |
+
+## Getting started
+
+Sign up at [packetstream.io](https://app.packetstream.io/signup) and add funds.
+
+- **Proxy examples** need your username and the auth key from the [Proxy Access page](https://app.packetstream.io/dashboard/network_access).
+- **API and MCP examples** need an API key from the [Search API page](https://app.packetstream.io/dashboard/search_api).
+
+Load them without writing them into your shell history:
 
 ```bash
-# Clone the repository
-git clone git@github.com:packetstream/packetstream-examples.git
+read -r -p 'PacketStream username: ' PACKETSTREAM_USER
+read -r -s -p 'PacketStream auth key: ' PACKETSTREAM_AUTH_KEY; printf '\n'
+export PACKETSTREAM_USER PACKETSTREAM_AUTH_KEY
 
-# Change to the project directory
-cd packetstream-examples
-
-# Change to the example directory for the language you're interested in
-cd go
-
-# Run the example with Docker
-PACKETSTREAM_PROXY_URLS="socks5h://username:auth_key@proxy.packetstream.io:31113,https://username:auth_key@proxy.packetstream.io:31111" ./run.sh
-
-# Or run the example natively
-PACKETSTREAM_PROXY_URLS="socks5h://username:auth_key@proxy.packetstream.io:31113,https://username:auth_key@proxy.packetstream.io:31111" go run main.go
+# Optional: target a country and keep one exit for a workflow
+export PACKETSTREAM_COUNTRY=US PACKETSTREAM_SESSION=order42
 ```
 
-## Environment Variables
-- `PACKETSTREAM_PROXY_URLS`: A comma-separated list of URLs of PacketStream proxies you want to use. Replace `username` and `auth_key` with your PacketStream username and auth key respectively.
+Then follow the README in the example's directory. Each one can run natively or in Docker:
+
+```bash
+cd proxy/python
+docker build -t packetstream-python .
+docker run --rm -e PACKETSTREAM_USER -e PACKETSTREAM_AUTH_KEY -e PACKETSTREAM_COUNTRY -e PACKETSTREAM_SESSION packetstream-python
+```
+
+`-e NAME` without a value copies the variable from your shell, so the key never appears on the command line.
+
+See [proxy/README.md](proxy/README.md) for the endpoints, the auth-key modifiers, and every environment variable the proxy examples read.
 
 ## Contributing
-Contributions to this repository are welcome. If you have an example or improvement you'd like to share, feel free to open a pull request.
+
+New examples and fixes are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the contract each example follows and how to test it.
 
 > [!CAUTION]
-> The examples never print your auth key. Keep it that way in new examples: redact proxy URLs before logging them, and pass credentials to Docker by variable name (`docker run -e PACKETSTREAM_PROXY_URLS`) rather than on the command line.
->
-> Please be careful not to expose hard-coded PacketStream credentials in your contributions. This is a public repository, and your credentials could be exposed to the public if you include them in your code.
-
-Feel free to include your [referral link](https://app.packetstream.io/dashboard/referrals) in your pull request if you would like to be credited for your contribution.
-
-## License
-This repository is licensed under the MIT License. Public contributions to this repository are subject to the same license. See the [LICENSE](LICENSE) file for more information.
+> This is a public repository. Never commit a username, auth key, API key, or `.env` file.
 
 ## Support
-If you encounter any issues or have questions about using PacketStream proxies, please contact [PacketStream support](https://packetstream.io/contact-us/).
 
-## About PacketStream
-PacketStream is a residential proxy network that enables businesses to access the web through a pool of residential IPs. With PacketStream, you can gather data, scrape websites, and perform other web-related tasks with requests originating from real residential ISPs all over the world.
+For help with PacketStream, see the [documentation](https://packetstream.io/docs/) or [contact support](https://packetstream.io/contact-us/). To report a security issue, see [SECURITY.md](SECURITY.md).
 
-For more information, visit [PacketStream.io](https://packetstream.io/).
+## License
+
+MIT. Contributions are accepted under the same license. See [LICENSE](LICENSE).

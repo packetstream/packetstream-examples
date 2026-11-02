@@ -1,0 +1,16 @@
+{
+  "name": "packetstream-browsers-playwright-nodejs",
+  "private": true,
+  "type": "module",
+  "description": "Open ipinfo.io in Chromium through PacketStream with Playwright and print the exit IP",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "playwright": "1.64.0"
+  }
+}

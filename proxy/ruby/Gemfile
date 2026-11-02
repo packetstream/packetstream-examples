@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+# Net::HTTP has no SOCKS5 support of its own
+gem 'socksify', '1.8.1'
+
+group :development do
+  gem 'rubocop', '1.92.0', require: false
+end

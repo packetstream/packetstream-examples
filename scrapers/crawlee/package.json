@@ -1,0 +1,16 @@
+{
+  "name": "packetstream-scrapers-crawlee",
+  "private": true,
+  "type": "module",
+  "description": "Fetch ipinfo.io through PacketStream with a Crawlee HttpCrawler and print the exit IP",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@crawlee/http": "3.18.2"
+  }
+}

@@ -1,0 +1,9 @@
+[package]
+name = "packetstream-proxy-example"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+reqwest = { version = "0.13.5", default-features = false, features = ["blocking", "json", "socks", "rustls"] }
+serde = { version = "1", features = ["derive"] }

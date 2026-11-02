@@ -1,0 +1,16 @@
+{
+  "name": "packetstream-proxy-nodejs",
+  "private": true,
+  "type": "module",
+  "description": "Make two requests through PacketStream and print the exit IP of each",
+  "license": "MIT",
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "undici": "8.11.2"
+  }
+}
