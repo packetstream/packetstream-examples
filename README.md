@@ -1,6 +1,6 @@
 # PacketStream Examples
 
-Runnable examples for [PacketStream](https://packetstream.io/): the residential proxy network, the Search API, the Fetch API, and the MCP server. Each example is a small, self-contained project with its own README, and CI tests every one of them.
+Runnable examples for [PacketStream](https://packetstream.io/): the residential proxy network, the Search API, the Fetch API, and the MCP server. Each example is a small, self-contained project with its own README, and a shared test script checks every one of them.
 
 ## Proxy examples
 

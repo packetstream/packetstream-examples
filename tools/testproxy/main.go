@@ -1,4 +1,5 @@
-// Command testproxy is a local stand-in for proxy.packetstream.io used by CI.
+// Command testproxy is a local stand-in for proxy.packetstream.io used by the
+// smoke test.
 //
 // It serves an HTTP proxy on :31112 and a SOCKS5 proxy on :31113, accepts only
 // the username and password given in TESTPROXY_USER and TESTPROXY_PASSWORD,

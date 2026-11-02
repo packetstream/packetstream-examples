@@ -3,10 +3,6 @@ version: 2
 # Every entry waits 20 days before proposing a new release, so a compromised
 # or broken release has time to be found before it reaches the examples.
 updates:
-  - package-ecosystem: github-actions
-    directory: /
-    schedule: {interval: weekly}
-    cooldown: {default-days: 20}
   - package-ecosystem: docker
     directories: ["/proxy/*", "/browsers/*", "/scrapers/*", "/search-api/*", "/fetch-api/*", "/mcp/*", "/tools/testproxy"]
     schedule: {interval: weekly}

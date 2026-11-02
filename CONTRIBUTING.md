@@ -1,6 +1,6 @@
 # Contributing
 
-Contributions are welcome. Every example follows the same contract, so readers can switch languages without relearning the setup and CI can test them all the same way.
+Contributions are welcome. Every example follows the same contract, so readers can switch languages without relearning the setup and one set of scripts can test them all.
 
 > [!CAUTION]
 > This repository is public. Never commit a username, auth key, API key, or `.env` file. If you expose a key, rotate it in the [dashboard](https://app.packetstream.io/dashboard/network_access) straight away.
@@ -12,7 +12,7 @@ Each example lives in `<product>/<language-or-tool>/` and contains:
 - `README.md`: what the example shows and the commands to run it natively and in Docker;
 - the source, kept short enough to read in one sitting;
 - a dependency manifest with a lockfile, or exact version pins where the ecosystem has no lockfile;
-- a `Dockerfile` that runs the example as a non-root user. Docker is optional for readers, but CI uses it.
+- a `Dockerfile` that runs the example as a non-root user. Docker is optional for readers, but the test scripts use it.
 
 Add the example to [`examples.json`](examples.json) and to the table in the root [README](README.md).
 
@@ -27,7 +27,7 @@ Proxy examples live under `proxy/`, `browsers/`, and `scrapers/`. They read thes
 | `PACKETSTREAM_COUNTRY` | no | ISO two-letter code, such as `US`. Appended to the auth key as `_country-US` |
 | `PACKETSTREAM_SESSION` | no | Sticky-session label. Appended as `_session-<label>`, after the country |
 | `PACKETSTREAM_PROXY_PROTOCOL` | no | `https` (default, port 31111), `http` (31112), or `socks5` (31113) |
-| `PACKETSTREAM_PROXY_HOST` | no | Defaults to `proxy.packetstream.io`. CI points it at a local test proxy |
+| `PACKETSTREAM_PROXY_HOST` | no | Defaults to `proxy.packetstream.io`. The smoke test points it at a local test proxy |
 
 The example must:
 
@@ -45,7 +45,7 @@ If a library cannot use one of the protocols, say so in its README with a source
 
 ## API example contract
 
-Search API and Fetch API examples read `PACKETSTREAM_API_KEY`, send it as `Authorization: Bearer <key>`, use a client timeout of at least 35 seconds, and print the API's `error.code` and `error.message` on failure. They take their input as command-line arguments with a sensible default. Each successful call is billed, so CI only builds and lints them; the live test runs them once.
+Search API and Fetch API examples read `PACKETSTREAM_API_KEY`, send it as `Authorization: Bearer <key>`, use a client timeout of at least 35 seconds, and print the API's `error.code` and `error.message` on failure. They take their input as command-line arguments with a sensible default. Each successful call is billed, so the smoke test skips them; `tools/lint.sh` and the live test cover them.
 
 ## Testing
 

@@ -32,7 +32,7 @@ linters:
 
   exclusions:
     rules:
-      # The CI test proxy is meant to listen on every interface of its container.
+      # The test proxy is meant to listen on every interface of its container.
       - path: tools/testproxy/
         linters: [gosec]
         text: G102

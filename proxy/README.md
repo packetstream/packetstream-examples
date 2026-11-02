@@ -32,6 +32,6 @@ Use ISO two-letter country codes. Use session labels that contain no personal da
 | `PACKETSTREAM_COUNTRY` | no | ISO two-letter code, such as `US` |
 | `PACKETSTREAM_SESSION` | no | Sticky-session label, such as `order42` |
 | `PACKETSTREAM_PROXY_PROTOCOL` | no | `https` (default), `http`, or `socks5` |
-| `PACKETSTREAM_PROXY_HOST` | no | Defaults to `proxy.packetstream.io`; CI points it at a local test proxy |
+| `PACKETSTREAM_PROXY_HOST` | no | Defaults to `proxy.packetstream.io`; the smoke test points it at a local test proxy |
 
 Each example makes two requests on separate connections. Without a session the two exit IPs usually differ; with a session they match.
