@@ -1,6 +1,6 @@
 # The image tag must match the playwright version in package.json, because
 # each Playwright release expects its own browser builds
-FROM mcr.microsoft.com/playwright:v1.64.0-noble
+FROM mcr.microsoft.com/playwright:v1.64.1-noble
 
 WORKDIR /app
 COPY package.json package-lock.json ./
