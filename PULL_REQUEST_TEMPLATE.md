@@ -12,7 +12,8 @@ Please review and check off the following items before submitting the pull reque
 - [ ] My code example is capable of running Dockerized through my `./run.sh` script and doesn't require any additional dependencies.
 - [ ] My code example works with PacketStream's HTTP, HTTPS and SOCKS proxies.
 - [ ] My code example does not include hard-coded PacketStream credentials.
+- [ ] My code example never prints or logs the auth key (redact proxy URLs and error messages).
 - [ ] README.md has been updated to reflect any relevant changes.
 
 ## PacketStream Referral Code
-Optionally, feel free to include your [referral link](https://packetstream.io/dashboard/referrals) here if you would like to be credited for your contribution.
+Optionally, feel free to include your [referral link](https://app.packetstream.io/dashboard/referrals) here if you would like to be credited for your contribution.

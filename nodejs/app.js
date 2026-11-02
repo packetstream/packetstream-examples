@@ -2,7 +2,7 @@ import axios from 'axios';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 
-const tunnelTimeout = 10000; // 10 seconds
+const tunnelTimeout = 30000; // 30 seconds
 
 async function main() {
   const proxyURLs = process.env.PACKETSTREAM_PROXY_URLS;
@@ -14,7 +14,7 @@ async function main() {
   const endpoint = "https://ipv4.icanhazip.com";
 
   for (const proxyURL of proxyURLs.split(',')) {
-    console.log(`Using proxy: ${proxyURL}`);
+    console.log(`Using proxy: ${redact(proxyURL)}`);
     try {
       const responseBody = await proxiedRequest(proxyURL, endpoint);
       console.log(`Your IP is: ${responseBody}`);
@@ -22,6 +22,17 @@ async function main() {
       console.error(`Error: ${error.message}`);
       process.exit(1);
     }
+  }
+}
+
+// redact returns the proxy URL with its auth key replaced so it is never logged.
+function redact(proxyURL) {
+  try {
+    const url = new URL(proxyURL);
+    if (url.password) url.password = 'xxxxx';
+    return url.toString();
+  } catch {
+    return '[invalid proxy URL]';
   }
 }
 
@@ -38,8 +49,9 @@ async function proxiedRequest(proxyURL, endpoint) {
   }
 
   try {
-    const response = await axios.get(endpoint, { httpAgent: agent, httpsAgent: agent, timeout: tunnelTimeout });
-    return response.data;
+    // proxy: false stops axios from replacing the agent with HTTP_PROXY/HTTPS_PROXY.
+    const response = await axios.get(endpoint, { httpAgent: agent, httpsAgent: agent, proxy: false, timeout: tunnelTimeout });
+    return String(response.data).trim();
   } catch (error) {
     throw new Error(`HTTP error: ${error.response ? error.response.status : error.message}`);
   }

@@ -1,58 +1,39 @@
+version: "2"
+
 linters:
   enable:
-    - asasalint
     - bidichk
     - cyclop
-    - decorder
-    - dogsled
-    - dupl
     - dupword
-    - errcheck
-    - errchkjson
     - errorlint
     - exhaustive
-    - forbidigo
     - gocognit
     - goconst
     - gocritic
-    - gocyclo
     - godot
-    - godox
-    - gofmt
-    - gofumpt
-    - goheader
-    - goimports
-    - gomnd
-    - gomoddirectives
-    - gomodguard
-    - gosimple
     - gosec
-    - govet
-    - grouper
-    - importas
-    - ineffassign
-    - interfacebloat
-    - lll
-    - loggercheck
-    - maintidx
-    - makezero
     - misspell
+    - mnd
     - nakedret
     - nestif
     - nilnil
-    - nlreturn
     - nolintlint
-    - nonamedreturns
     - prealloc
     - predeclared
-    - promlinter
-    - reassign
-    - staticcheck
-    - stylecheck
-    - tagliatelle
-    - tenv
-    - typecheck
-    - usestdlibvars
     - unparam
-    - unused
+    - usestdlibvars
     - whitespace
+
+  settings:
+    errcheck:
+      exclude-functions:
+        - (io.ReadCloser).Close
+    gosec:
+      excludes:
+        # The example logs the redacted proxy URL from its own environment.
+        - G706
+
+formatters:
+  enable:
+    - gofumpt
+    - goimports
