@@ -22,9 +22,9 @@ h11==0.16.0
     # via
     #   httpcore2
     #   uvicorn
-httpcore2==2.13.1
+httpcore2==2.15.1
     # via httpx2
-httpx2==2.13.1
+httpx2==2.15.1
     # via
     #   -r requirements.in
     #   mcp
@@ -50,7 +50,7 @@ pydantic==2.14.1
     #   mcp-types
 pydantic-core==2.50.1
     # via pydantic
-pyjwt==2.15.1
+pyjwt[crypto]==2.15.1
     # via mcp
 python-multipart==0.0.32
     # via mcp
