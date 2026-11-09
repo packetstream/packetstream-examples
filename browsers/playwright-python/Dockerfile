@@ -1,6 +1,6 @@
 # The image tag must match the playwright version in requirements.txt, because
 # each Playwright release expects its own browser builds
-FROM mcr.microsoft.com/playwright/python:v1.63.0-noble
+FROM mcr.microsoft.com/playwright/python:v1.64.1-noble
 
 WORKDIR /app
 COPY requirements.txt .
