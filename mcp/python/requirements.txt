@@ -22,9 +22,9 @@ h11==0.16.0
     # via
     #   httpcore2
     #   uvicorn
-httpcore2==2.15.1
+httpcore2==2.16.0
     # via httpx2
-httpx2==2.15.1
+httpx2==2.16.0
     # via
     #   -r requirements.in
     #   mcp
