@@ -6,5 +6,5 @@ source 'https://rubygems.org'
 gem 'socksify', '1.8.1'
 
 group :development do
-  gem 'rubocop', '1.92.1', require: false
+  gem 'rubocop', '1.92.2', require: false
 end
